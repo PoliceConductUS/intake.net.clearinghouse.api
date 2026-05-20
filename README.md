@@ -157,7 +157,16 @@ Commitizen can help format messages:
 ## Adding Tools or Frameworks
 
 Do not add tools, languages, frameworks, services, or runtimes for speculative
-future needs. For durable technology choices, write an ADR and document:
+future needs. Start with the Institute for Police Conduct, Inc. technology
+radar:
+
+- `Adopt` technologies are the easiest to add.
+- `Trial` technologies are reasonable when the project has a matching use case
+  and documents the evaluation.
+- `Assess` and `Caution` technologies need stronger justification before
+  becoming project dependencies.
+
+For durable technology choices, write an ADR and document:
 
 - the current outcome it enables
 - what existing tool or pattern it replaces

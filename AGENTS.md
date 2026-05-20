@@ -116,6 +116,10 @@ outcome, alternatives, validation path, operational burden, and removal path.
 Use an ADR when the choice affects architecture, workflow, runtime operations,
 security posture, or long-term maintenance.
 
+When an organization technology radar exists, prefer `Adopt` entries first and
+`Trial` entries second. Treat `Assess` and `Caution` entries as requiring
+explicit ADR justification before adding them to a project.
+
 ## Validation
 
 Prove changes with the narrowest validation that covers the risk.
