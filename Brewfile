@@ -1,4 +1,5 @@
 brew "git"
+brew "gh"
 brew "nvm"
 brew "uv"
 

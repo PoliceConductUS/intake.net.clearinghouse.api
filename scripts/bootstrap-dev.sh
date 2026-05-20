@@ -209,6 +209,17 @@ detect_git() {
   esac
 }
 
+detect_github_cli() {
+  info "Checking for GitHub CLI"
+
+  if have gh; then
+    append_unique INFO_ITEMS "GitHub CLI $(gh --version | head -n 1 | awk '{print $3}') is available at $(command -v gh)"
+  else
+    append_unique INSTALL_ITEMS "GitHub CLI from Brewfile"
+    append_unique INSTALL_COMMANDS "brew bundle --file \"$ROOT_DIR/Brewfile\""
+  fi
+}
+
 detect_nvm() {
   info "Checking for nvm"
   load_nvm
@@ -365,6 +376,7 @@ detect_all() {
   detect_homebrew
   detect_brewfile
   detect_git
+  detect_github_cli
   detect_nvm
   detect_uv
   detect_node
@@ -456,6 +468,14 @@ install_git_if_needed() {
   esac
 }
 
+install_github_cli_if_needed() {
+  if have gh; then
+    return
+  fi
+
+  install_brewfile_if_needed
+}
+
 install_docker_if_needed() {
   if have docker; then
     return
@@ -500,6 +520,7 @@ install_missing() {
   install_homebrew_if_needed
   install_brewfile_if_needed
   install_git_if_needed
+  install_github_cli_if_needed
   install_uv_if_needed
   install_node_if_needed
   install_docker_if_needed
