@@ -175,6 +175,18 @@ For durable technology choices, write an ADR and document:
 - security, data, accessibility, or operational risk
 - the removal path if it does not work out
 
+## Infrastructure Environments
+
+AWS is the default platform for production and pull request environments.
+
+Pull request environments should be isolated per PR, created or updated as part
+of the PR lifecycle, and destroyed when the PR closes. Infrastructure should be
+defined in checked-in configuration and exposed through job-centric npm scripts
+when this repository owns deployable infrastructure.
+
+Use another production or PR environment platform only when an ADR explains the
+reason, access model, cleanup behavior, observability, and cost controls.
+
 ## Public Web Accessibility
 
 If this repository is a public-facing web project, add automated accessibility

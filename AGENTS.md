@@ -120,6 +120,19 @@ When an organization technology radar exists, prefer `Adopt` entries first and
 `Trial` entries second. Treat `Assess` and `Caution` entries as requiring
 explicit ADR justification before adding them to a project.
 
+## Infrastructure Environments
+
+AWS is the default platform for production and pull request environments.
+
+Pull request environments should be isolated per PR, created or updated as part
+of the PR lifecycle, and destroyed when the PR closes. Infrastructure should be
+defined in checked-in configuration, validated in CI where practical, and exposed
+through job-centric npm scripts when this repository owns deployable
+infrastructure.
+
+Use another production or PR environment platform only when an ADR explains the
+reason, access model, cleanup behavior, observability, and cost controls.
+
 ## Validation
 
 Prove changes with the narrowest validation that covers the risk.
