@@ -91,6 +91,31 @@ Do not add generic frameworks, plugin systems, configuration layers, queues,
 caches, retries, compatibility shims, or extension points unless the current
 outcome requires them.
 
+## Implementation Standards
+
+Validate data at system boundaries. Public APIs, CLIs, jobs, workflows, and data
+loaders should accept typed, validated models rather than raw dictionaries,
+loosely shaped objects, or unchecked payloads.
+
+Use intent-revealing names. Avoid abbreviations, single-letter variables, and
+multiple names for the same concept. Keep terminology consistent across docs,
+code, schemas, tests, and user-facing behavior.
+
+Prefer pure functions, immutable domain values, composition over inheritance, and
+clear separation between CLI/API/UI, domain behavior, persistence,
+infrastructure, and external integrations.
+
+Tasks, jobs, data loaders, and workflows should be idempotent and repeatable
+unless an ADR explains why that is impossible or undesirable.
+
+Prefer `.yaml` for human-authored configuration, declarative specs, manifests,
+workflows, and policy files. Use JSON when a tool requires it or when strict
+machine interchange/schema support is materially better.
+
+Build observability in from the start for production services and scheduled
+automation. Emit structured logs and enough metrics or traces to diagnose
+failures.
+
 ## No Silent Fallback
 
 This is a fail-fast-and-loudly project.

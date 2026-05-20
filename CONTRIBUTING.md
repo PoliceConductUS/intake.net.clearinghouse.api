@@ -48,6 +48,18 @@ Do not include sensitive personal data, credentials, private records, sealed
 records, or non-public law-enforcement material in public issues, pull requests,
 fixtures, screenshots, or logs.
 
+## Implementation Expectations
+
+Use typed, validated models at public API, CLI, job, workflow, and data loading
+boundaries. Keep names intent-revealing, avoid abbreviations, and use one term
+per concept across docs, code, schemas, tests, and user-facing behavior.
+
+Prefer `.yaml` for human-authored configuration, declarative specs, manifests,
+workflows, and policy files. Keep JSON when required by the tool.
+
+Design tasks and data workflows to be idempotent and repeatable. Errors should
+fail fast with enough context to diagnose the problem.
+
 ## Public Web Accessibility
 
 Public-facing web projects must include automated accessibility checks using

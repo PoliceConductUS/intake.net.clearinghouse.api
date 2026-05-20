@@ -175,6 +175,10 @@ For durable technology choices, write an ADR and document:
 - security, data, accessibility, or operational risk
 - the removal path if it does not work out
 
+Prefer `.yaml` for human-authored configuration, declarative specs, manifests,
+workflows, and policy files. Keep JSON where the tool requires it, such as
+`package.json`, or where machine interchange/schema support is materially better.
+
 ## Infrastructure Environments
 
 AWS is the default platform for production and pull request environments.
@@ -184,8 +188,21 @@ of the PR lifecycle, and destroyed when the PR closes. Infrastructure should be
 defined in checked-in configuration and exposed through job-centric npm scripts
 when this repository owns deployable infrastructure.
 
+Use GitHub OIDC for GitHub Actions access to AWS. Avoid long-lived AWS access
+keys in repository or organization secrets.
+
 Use another production or PR environment platform only when an ADR explains the
 reason, access model, cleanup behavior, observability, and cost controls.
+
+## Implementation Standards
+
+Validate data at public API, CLI, job, workflow, and data loading boundaries
+using typed models. Keep names intent-revealing and terminology consistent.
+Design tasks and data workflows to be idempotent and repeatable.
+
+Production services and scheduled automation should include structured logs and
+enough metrics or traces to diagnose failures. Prefer OpenTelemetry when a
+project needs portable observability across services or jobs.
 
 ## Public Web Accessibility
 
