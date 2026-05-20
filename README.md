@@ -29,6 +29,15 @@ npm run validate
 npm run openspec:validate
 ```
 
+`npm run doctor` is the post-bootstrap readiness check. It verifies local tools
+and environment state that installation alone cannot finish, including GitHub CLI
+authentication. If it reports that GitHub CLI is not authenticated, run:
+
+```bash
+gh auth login
+npm run doctor
+```
+
 ## Standard Workflow
 
 Use this flow for behavior changes, data-shape changes, validation changes, or

@@ -214,6 +214,11 @@ detect_github_cli() {
 
   if have gh; then
     append_unique INFO_ITEMS "GitHub CLI $(gh --version | head -n 1 | awk '{print $3}') is available at $(command -v gh)"
+    if gh auth status -h github.com >/dev/null 2>&1; then
+      append_unique INFO_ITEMS "GitHub CLI is authenticated for github.com"
+    else
+      append_unique MANUAL_ITEMS "authenticate GitHub CLI with: gh auth login"
+    fi
   else
     append_unique INSTALL_ITEMS "GitHub CLI from Brewfile"
     append_unique INSTALL_COMMANDS "brew bundle --file \"$ROOT_DIR/Brewfile\""
@@ -527,7 +532,19 @@ install_missing() {
   install_npm_dependencies_if_needed
 }
 
+verify_github_cli_auth() {
+  info "Verifying GitHub CLI authentication"
+
+  have gh || fail "GitHub CLI is not installed. Run ./scripts/bootstrap-dev.sh first."
+
+  if ! gh auth status -h github.com >/dev/null 2>&1; then
+    fail "GitHub CLI is not authenticated. Run gh auth login, then rerun npm run doctor."
+  fi
+}
+
 verify_project_tools() {
+  verify_github_cli_auth
+
   info "Verifying OpenSpec"
   npx openspec --version >/dev/null
   npm run openspec:validate
@@ -551,7 +568,13 @@ main() {
     install_missing
   fi
 
-  install_node_if_needed
+  if [[ "$MODE" != "check" ]]; then
+    install_node_if_needed
+  else
+    load_nvm
+    nvm use >/dev/null 2>&1 || true
+  fi
+
   verify_project_tools
 
   if have docker && docker info >/dev/null 2>&1; then
