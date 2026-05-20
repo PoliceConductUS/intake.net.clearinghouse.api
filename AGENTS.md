@@ -111,6 +111,11 @@ dependencies that are no longer necessary for the current outcome.
 When adding or updating a dependency, check the current published version instead
 of relying on memory.
 
+For new tools, languages, frameworks, services, or runtimes, document the current
+outcome, alternatives, validation path, operational burden, and removal path.
+Use an ADR when the choice affects architecture, workflow, runtime operations,
+security posture, or long-term maintenance.
+
 ## Validation
 
 Prove changes with the narrowest validation that covers the risk.

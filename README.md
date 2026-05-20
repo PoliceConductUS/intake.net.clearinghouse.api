@@ -153,3 +153,20 @@ Commitizen can help format messages:
 
 - Engineering standards: `PoliceConductUS/engineering-standards`
 - Org profile: `PoliceConductUS/.github`
+
+## Adding Tools or Frameworks
+
+Do not add tools, languages, frameworks, services, or runtimes for speculative
+future needs. For durable technology choices, write an ADR and document:
+
+- the current outcome it enables
+- what existing tool or pattern it replaces
+- how developers install, run, test, and debug it
+- how CI validates it
+- security, data, accessibility, or operational risk
+- the removal path if it does not work out
+
+## Public Web Accessibility
+
+If this repository is a public-facing web project, add automated accessibility
+checks using axe-core or an axe-core-based tool and document the local/CI command.

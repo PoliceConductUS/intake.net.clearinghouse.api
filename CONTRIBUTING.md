@@ -47,3 +47,9 @@ fix(data): correct duplicate source reference
 Do not include sensitive personal data, credentials, private records, sealed
 records, or non-public law-enforcement material in public issues, pull requests,
 fixtures, screenshots, or logs.
+
+## Public Web Accessibility
+
+Public-facing web projects must include automated accessibility checks using
+axe-core or an axe-core-based tool. If the check is not part of `npm run
+validate`, document the command and CI job that runs it.
