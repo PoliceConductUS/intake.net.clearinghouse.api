@@ -116,6 +116,24 @@ Build observability in from the start for production services and scheduled
 automation. Emit structured logs and enough metrics or traces to diagnose
 failures.
 
+## Operational Standards
+
+Manual diagnosis is an anti-pattern. Production services, scheduled jobs, and
+data pipelines should make problems visible through automated checks, reports,
+dashboards, traces, metrics, alerts, or CLI commands before a human investigates
+manually.
+
+Runbooks should be indexes into automated detection, diagnosis, recovery, and
+escalation paths. If a runbook requires a manual check, prefer adding a health
+check, validation report, metric, alert, or CLI command.
+
+Do not log secrets, credentials, private records, sealed records, or unnecessary
+personal data. Use stable IDs, source references, and redacted context for
+diagnosis.
+
+PR environments and other temporary cloud resources need visible ownership,
+cost-control tags, and automated cleanup.
+
 ## No Silent Fallback
 
 This is a fail-fast-and-loudly project.

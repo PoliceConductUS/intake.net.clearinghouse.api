@@ -60,6 +60,15 @@ workflows, and policy files. Keep JSON when required by the tool.
 Design tasks and data workflows to be idempotent and repeatable. Errors should
 fail fast with enough context to diagnose the problem.
 
+## Operational Expectations
+
+Manual diagnosis should not be the plan. If a production service, scheduled job,
+or data pipeline can fail, prefer adding automated health, validation, audit, or
+diagnostic output that explains the failure.
+
+Do not log secrets, credentials, private records, sealed records, or unnecessary
+personal data.
+
 ## Public Web Accessibility
 
 Public-facing web projects must include automated accessibility checks using

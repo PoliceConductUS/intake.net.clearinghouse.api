@@ -204,6 +204,22 @@ Production services and scheduled automation should include structured logs and
 enough metrics or traces to diagnose failures. Prefer OpenTelemetry when a
 project needs portable observability across services or jobs.
 
+## Operational Standards
+
+Manual diagnosis is an anti-pattern. Production services, scheduled jobs, and
+data pipelines should expose automated health, validation, audit, or diagnostic
+output before relying on human investigation.
+
+Runbooks should point to automated signals and recovery paths: dashboards, log
+queries, traces, validation reports, job reports, CLI commands, rerun/replay
+steps, rollback steps, and escalation paths.
+
+Temporary cloud resources, including PR environments, should have ownership tags,
+cost controls, and automated cleanup.
+
+Do not log secrets, credentials, private records, sealed records, or unnecessary
+personal data.
+
 ## Public Web Accessibility
 
 If this repository is a public-facing web project, add automated accessibility
