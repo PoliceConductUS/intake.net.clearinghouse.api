@@ -188,6 +188,28 @@ of the PR lifecycle, and destroyed when the PR closes. Infrastructure should be
 defined in checked-in configuration and exposed through job-centric npm scripts
 when this repository owns deployable infrastructure.
 
+Infrastructure scripts use `infra:<job>` for local commands and
+`infra:<job>:<env>` for non-local environments. Local is the default when no
+environment suffix is present. Shared environments should use explicit suffixes;
+currently expected suffixes are `pr` and `prod`.
+
+```bash
+npm run infra:up
+npm run infra:plan
+npm run infra:apply
+npm run infra:diagnose
+npm run infra:plan:prod
+npm run infra:apply:prod
+npm run infra:diagnose:prod
+npm run infra:plan:pr
+npm run infra:apply:pr
+npm run infra:diagnose:pr
+npm run infra:destroy:pr
+```
+
+`diagnose` scripts must be read-only. Do not define a production destroy script
+unless the repo has an explicit disaster-recovery design and approval path.
+
 Use GitHub OIDC for GitHub Actions access to AWS. Avoid long-lived AWS access
 keys in repository or organization secrets.
 

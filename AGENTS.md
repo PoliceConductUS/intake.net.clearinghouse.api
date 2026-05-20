@@ -173,6 +173,15 @@ defined in checked-in configuration, validated in CI where practical, and expose
 through job-centric npm scripts when this repository owns deployable
 infrastructure.
 
+Infrastructure scripts use `infra:<job>` for local commands and
+`infra:<job>:<env>` for non-local environments. Local is the default when no
+environment suffix is present. Shared environments should use explicit suffixes;
+currently expected suffixes are `pr` and `prod`. Examples:
+`infra:plan`, `infra:diagnose`, `infra:plan:prod`, `infra:diagnose:prod`, and
+`infra:destroy:pr`. `diagnose` scripts must be read-only. Do not add a
+production destroy script unless the repo has an explicit disaster-recovery
+design and approval path.
+
 Use another production or PR environment platform only when an ADR explains the
 reason, access model, cleanup behavior, observability, and cost controls.
 
