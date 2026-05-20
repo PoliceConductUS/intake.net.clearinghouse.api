@@ -210,6 +210,18 @@ npm run infra:destroy:pr
 `diagnose` scripts must be read-only. Do not define a production destroy script
 unless the repo has an explicit disaster-recovery design and approval path.
 
+For `:pr` commands, the script should resolve the PR from the active git
+branch/worktree using GitHub CLI. If no open PR is associated with the active
+branch, the command must fail loudly and explain how to provide an explicit PR
+number:
+
+```bash
+npm run infra:plan:pr -- --pr 123
+npm run infra:apply:pr -- --pr 123
+npm run infra:diagnose:pr -- --pr 123
+npm run infra:destroy:pr -- --pr 123
+```
+
 Use GitHub OIDC for GitHub Actions access to AWS. Avoid long-lived AWS access
 keys in repository or organization secrets.
 

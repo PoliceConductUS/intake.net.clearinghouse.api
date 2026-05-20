@@ -182,6 +182,11 @@ currently expected suffixes are `pr` and `prod`. Examples:
 production destroy script unless the repo has an explicit disaster-recovery
 design and approval path.
 
+For `:pr` commands, resolve the PR from the active git branch/worktree using
+GitHub CLI. If no open PR is associated with the active branch, fail loudly and
+explain how to provide an explicit PR number, such as
+`npm run infra:diagnose:pr -- --pr 123`.
+
 Use another production or PR environment platform only when an ADR explains the
 reason, access model, cleanup behavior, observability, and cost controls.
 
