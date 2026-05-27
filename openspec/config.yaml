@@ -1,0 +1,15 @@
+schema: superpowers-bridge
+
+context: |
+  Repository: replace-with-repo-name
+  Purpose: Replace this with the project purpose.
+  Stack: Replace this with the project stack.
+  Workflow: OpenSpec with superpowers-bridge, Superpowers, Codex App, trunk-based development, and repo-local .worktrees.
+
+rules:
+  proposal:
+    - Identify affected user-visible behavior, data contracts, validation rules, and downstream consumers.
+    - Call out whether the change preserves backward compatibility.
+  tasks:
+    - Include validation steps that prove the intended behavior.
+    - Include tests when the change modifies behavior.

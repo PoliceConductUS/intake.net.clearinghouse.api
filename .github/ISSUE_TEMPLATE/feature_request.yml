@@ -1,0 +1,30 @@
+name: Feature request
+description: Propose a new outcome or capability.
+title: "Feature: "
+labels:
+  - enhancement
+body:
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Desired outcome
+      description: What should this make possible?
+    validations:
+      required: true
+  - type: textarea
+    id: users
+    attributes:
+      label: Who benefits?
+      description: Describe the users or systems affected by this change.
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Smallest useful slice
+      description: What can be removed or postponed?
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: What observable behavior would prove this works?

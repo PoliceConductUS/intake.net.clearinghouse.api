@@ -1,0 +1,9 @@
+# Replace with the appropriate org team when available.
+* @dalelotts
+
+# Repository governance and automation.
+/.github/ @dalelotts
+/AGENTS.md @dalelotts
+/openspec/ @dalelotts
+/docs/adr/ @dalelotts
+/scripts/ @dalelotts

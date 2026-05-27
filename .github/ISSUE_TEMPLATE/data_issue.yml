@@ -1,0 +1,44 @@
+name: Data issue
+description: Report a data correctness, provenance, duplicate, or removal concern.
+title: "Data: "
+labels:
+  - data
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Do not post sensitive personal data, private records, sealed records, or credentials in this public issue.
+  - type: textarea
+    id: record
+    attributes:
+      label: Affected record or source
+      description: Link to public records or describe the public source involved.
+    validations:
+      required: true
+  - type: dropdown
+    id: issue_type
+    attributes:
+      label: Issue type
+      options:
+        - Incorrect data
+        - Missing provenance
+        - Duplicate entity
+        - Removal or correction request
+        - Source dispute
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: Provide public evidence or source references that support the correction.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Requested correction
+      description: What should change?
+    validations:
+      required: true
