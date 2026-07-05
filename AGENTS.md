@@ -61,6 +61,55 @@ Create OpenSpec change artifacts from the change worktree, not from the main
 checkout. Documentation-only edits, formatting, test-only refactors, and internal
 refactors that preserve specified behavior can be direct PR-sized changes.
 
+## Intake Source Module Rules
+
+This repository is an intake source module for the Civil Rights Litigation
+Clearinghouse API. It must follow the root intake producer workflow documented
+in [docs/intake-source-producer-workflow.md](docs/intake-source-producer-workflow.md).
+
+The module namespace is `clearinghouse-api`.
+
+Root intake is the durable source for shared contracts. Before changing command
+behavior, workspace layout, artifact shape, source identity, persistence,
+caching, validation, or generated-contract behavior, read:
+
+- `/Users/dalelotts/dev/PoliceConductUS/intake/AGENTS.md`
+- `/Users/dalelotts/dev/PoliceConductUS/intake/docs/adr/0001-define-intake-envelope-contract.md`
+- `/Users/dalelotts/dev/PoliceConductUS/intake/docs/adr/0005-use-source-specific-artifact-producers.md`
+- `/Users/dalelotts/dev/PoliceConductUS/intake/docs/adr/0010-own-shared-intake-workspace-layout.md`
+- `/Users/dalelotts/dev/PoliceConductUS/intake/docs/adr/0014-implement-commands-as-configurable-elt-pipelines.md`
+- `/Users/dalelotts/dev/PoliceConductUS/intake/openspec/specs/artifacts-database-import/spec.md`
+
+Source data does not belong in this repository. Preserve acquired source data,
+source provenance, digests, generated artifacts, diagnostics, and logs under the
+command folder assigned by the `Command` envelope. Use the module state path
+assigned by the `Command` envelope for reusable module-owned source/cache state.
+
+Do not write outside paths granted by `Command.spec.path` and
+`Command.spec.statePath`. Do not infer additional writable paths from the process
+current working directory, sibling repositories, or previous local experiments.
+
+All intake YAML envelopes must use
+`apiVersion: policeconduct.org/intake/v1alpha1` and must be read or written
+through root intake shared IO when that envelope kind is part of the shared
+contract. Do not hand-roll envelope parsing, validation, serialization,
+filenames, or path conventions.
+
+Source-produced artifacts must use stable source-local record names and must not
+contain canonical database IDs. Root intake owns `SourceNameToCanonicalId`
+records, canonical cuid2 assignment, database mutation planning, replay, and
+canonical resolved-property state.
+
+If source records are missing fields needed for stable artifacts, resolve those
+fields through explicit auditable command stages. Cache only deterministic,
+module-owned resolver output under the module state path. Fail loudly when a
+property cannot be resolved safely.
+
+Reconfirm assumptions periodically as new root intake contracts, producer
+patterns, or source facts become available. Ask before including or excluding
+adjacent repositories, changing persistence/cache behavior, adding artifact
+kinds, or changing source-data handling.
+
 ## No Hidden Product Decisions
 
 Do not encode product decisions only in code, comments, tickets, pull requests,
